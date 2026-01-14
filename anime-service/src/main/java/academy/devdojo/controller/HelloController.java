@@ -10,14 +10,14 @@ import java.util.concurrent.ThreadLocalRandom;
 @Slf4j
 public class HelloController {
 
-   @GetMapping
-    public String hi(){
+    @GetMapping
+    public String hi() {
         return "Hello";
     }
 
     @PostMapping
-    public Long save(@RequestBody String name){
-       log.info("save '{}'", name);
-       return ThreadLocalRandom.current().nextLong(1, 1000);
+    public Long save(@RequestBody String name) {
+        log.info("save '{}'", name);
+        return ThreadLocalRandom.current().nextLong(1, 1000);
     }
 }

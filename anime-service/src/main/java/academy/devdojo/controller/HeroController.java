@@ -13,17 +13,17 @@ public class HeroController {
     private static final List<String> HEROES = List.of("Guts", "zoro", "Kakashi", "Goku");
 
     @GetMapping
-    public List<String> listAllHeroes(){
+    public List<String> listAllHeroes() {
         return HEROES;
     }
 
     @GetMapping("filter")
-    public List<String> listAllHeroesParam(@RequestParam(required = false) String name){
+    public List<String> listAllHeroesParam(@RequestParam(required = false) String name) {
         return HEROES.stream().filter(hero -> hero.equalsIgnoreCase(name)).toList();
     }
 
     @GetMapping("filterList")
-    public List<String> listAllHeroesParamList(@RequestParam(defaultValue = "") List<String> names){
+    public List<String> listAllHeroesParamList(@RequestParam(defaultValue = "") List<String> names) {
         return HEROES.stream().filter(names::contains).toList();
     }
 }
