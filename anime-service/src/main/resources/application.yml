@@ -4,7 +4,6 @@ spring:
   threads:
     virtual:
       enabled: true
-
 logging:
   level:
     academy.devdojo: debug
@@ -16,3 +15,7 @@ server:
   tomcat:
     threads:
       max: 20
+database:
+  url: ${DB_URL:localhost}:${DB_PORT:3306}
+  username: ${LOCAL_USERNAME:mike}
+  password: ${LOCAL_PASSWORD:devdojo}
