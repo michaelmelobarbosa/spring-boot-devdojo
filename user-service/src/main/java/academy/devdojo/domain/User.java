@@ -8,9 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
 
+    @EqualsAndHashCode.Include
     private Long id;
     private String firstName;
     private String lastName;

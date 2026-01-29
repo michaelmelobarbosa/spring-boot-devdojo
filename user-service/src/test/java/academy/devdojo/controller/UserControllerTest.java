@@ -64,7 +64,7 @@ class UserControllerTest {
         var response = fileUtils.readResourceFile("user/get-user-ana-name-200.json");
         var name = "Ana";
 
-        mockMvc.perform(MockMvcRequestBuilders.get(URL).param("firstName", name))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL).param("name", name))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(response));
@@ -78,7 +78,7 @@ class UserControllerTest {
         var response = fileUtils.readResourceFile("user/get-user-x-name-200.json");
         var name = "x";
 
-        mockMvc.perform(MockMvcRequestBuilders.get(URL).param("firstName", name))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL).param("name", name))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(response));
