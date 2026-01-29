@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: user-service
+  threads:
+    virtual:
+      enabled: true
+logging:
+  level:
+    academy.devdojo: debug
+server:
+  servlet:
+    context-path: /
+  error:
+    include-stacktrace: on_param
+  tomcat:
+    threads:
+      max: 20
+database:
+  url: ${DB_URL:localhost}:${DB_PORT:3307}
+  username: ${LOCAL_USERNAME:mike}
+  password: ${LOCAL_PASSWORD:devdojo}

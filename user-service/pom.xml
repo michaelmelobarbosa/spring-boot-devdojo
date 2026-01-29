@@ -11,7 +11,7 @@
     <groupId>academy.devdojo</groupId>
     <artifactId>user-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Anime Service</name>
+    <name>User Service</name>
     <description>Projeto Exemplo do curso Spring Boot Direto Das Trincheiras</description>
 
     <properties>

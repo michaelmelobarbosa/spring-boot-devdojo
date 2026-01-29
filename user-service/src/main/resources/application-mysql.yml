@@ -1,0 +1,5 @@
+database:
+  url: localhost:3307
+  username: devdojo
+  password: devdojo
+
