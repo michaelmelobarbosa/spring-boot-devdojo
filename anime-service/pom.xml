@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>academy.devdojo</groupId>
-    <artifactId>user-service</artifactId>
+    <artifactId>anime-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Anime Service</name>
     <description>Projeto Exemplo do curso Spring Boot Direto Das Trincheiras</description>
