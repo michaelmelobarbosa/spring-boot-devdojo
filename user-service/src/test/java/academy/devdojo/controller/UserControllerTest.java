@@ -48,7 +48,7 @@ class UserControllerTest {
     @Order(1)
     void findAll_ReturnsAllUsers_WhenArgumentIsNull() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(usersList);
-        var response = fileUtils.readResourceFile("user/get-user-null-name-200.json");
+        var response = fileUtils.readResourceFile("user/get-user-null-firstname-200.json");
 
         mockMvc.perform(MockMvcRequestBuilders.get(URL))
                 .andDo(MockMvcResultHandlers.print())
@@ -57,28 +57,28 @@ class UserControllerTest {
     }
 
     @Test
-    @DisplayName("GET v1/users?name=Ana returns list with found object when first name exists")
+    @DisplayName("GET v1/users?firstname=Ana returns list with found object when first name exists")
     @Order(2)
-    void findAll_ReturnsFoundUserInList_WhenNameIsFound() throws Exception {
+    void findAll_ReturnsFoundUserInList_WhenFirstNameIsFound() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(usersList);
-        var response = fileUtils.readResourceFile("user/get-user-ana-name-200.json");
-        var name = "Ana";
+        var response = fileUtils.readResourceFile("user/get-user-ana-firstname-200.json");
+        var firstName = "Ana";
 
-        mockMvc.perform(MockMvcRequestBuilders.get(URL).param("name", name))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL).param("firstName", firstName))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(response));
     }
 
     @Test
-    @DisplayName("GET v1/users?name=x returns empty list when name is not found")
+    @DisplayName("GET v1/users?firstname=x returns empty list when name is not found")
     @Order(3)
-    void findAll_ReturnsEmptyList_WhenNameIsNotFound() throws Exception {
+    void findAll_ReturnsEmptyList_WhenFirstNameIsNotFound() throws Exception {
         BDDMockito.when(userData.getUsers()).thenReturn(usersList);
-        var response = fileUtils.readResourceFile("user/get-user-x-name-200.json");
-        var name = "x";
+        var response = fileUtils.readResourceFile("user/get-user-x-firstname-200.json");
+        var firstName = "x";
 
-        mockMvc.perform(MockMvcRequestBuilders.get(URL).param("name", name))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL).param("firstName", firstName))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(response));

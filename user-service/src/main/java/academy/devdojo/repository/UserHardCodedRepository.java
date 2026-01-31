@@ -20,8 +20,8 @@ public class UserHardCodedRepository {
         return userData.getUsers().stream().filter(user -> user.getId().equals(id)).findFirst();
     }
 
-    public List<User> findByName(String name) {
-        return userData.getUsers().stream().filter(user -> user.getFirstName().equalsIgnoreCase(name)).toList();
+    public List<User> findByFirstName(String firstName) {
+        return userData.getUsers().stream().filter(user -> user.getFirstName().equalsIgnoreCase(firstName)).toList();
     }
 
     public User save(User user) {

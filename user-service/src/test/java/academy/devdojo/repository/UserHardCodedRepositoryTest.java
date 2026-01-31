@@ -50,23 +50,23 @@ class UserHardCodedRepositoryTest {
     }
 
     @Test
-    @DisplayName("findByName returns empty list when name is null")
+    @DisplayName("findByName returns empty list when firstName is null")
     @Order(3)
-    void findByName_ReturnsEmptyList_WhenNameIsNull() {
+    void findByFirstName_ReturnsEmptyList_WhenFirstNameIsNull() {
         BDDMockito.when(userData.getUsers()).thenReturn(usersList);
 
-        var users = respository.findByName(null);
+        var users = respository.findByFirstName(null);
         Assertions.assertThat(users).isNotNull().isEmpty();
     }
 
     @Test
-    @DisplayName("findByName returns list with found object when name exists")
+    @DisplayName("findByName returns list with found object when firstName exists")
     @Order(4)
-    void findByName_ReturnsFoundUserInList_WhenNameIsFound() {
+    void findByFirstName_ReturnsFoundUserInList_WhenFirstNameIsFound() {
         BDDMockito.when(userData.getUsers()).thenReturn(usersList);
 
         var expectedUser = usersList.getFirst();
-        var users = respository.findByName(expectedUser.getFirstName());
+        var users = respository.findByFirstName(expectedUser.getFirstName());
         Assertions.assertThat(users).hasSize(1).contains(expectedUser);
     }
 

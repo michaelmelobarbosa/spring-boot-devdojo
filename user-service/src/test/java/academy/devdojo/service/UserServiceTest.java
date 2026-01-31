@@ -46,26 +46,26 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("findAll returns list with found object when name exists")
+    @DisplayName("findAll returns list with found object when first name exists")
     @Order(2)
-    void findByName_ReturnsFoundUserInList_WhenNameIsFound() {
+    void findByFirstName_ReturnsFoundUserInList_WhenFirstNameIsFound() {
         var user = usersList.getFirst();
         var expectedUsersFound = singletonList(user);
 
-        BDDMockito.when(repository.findByName(user.getFirstName())).thenReturn(expectedUsersFound);
+        BDDMockito.when(repository.findByFirstName(user.getFirstName())).thenReturn(expectedUsersFound);
 
         var usersFound = service.findAll(user.getFirstName());
         Assertions.assertThat(usersFound).containsAll(expectedUsersFound);
     }
 
     @Test
-    @DisplayName("findAll returns empty list when name is not found")
+    @DisplayName("findAll returns empty list when first name is not found")
     @Order(3)
-    void findByName_ReturnsEmptyList_WhenNameIsNotFound() {
-        var name = "not-found";
-        BDDMockito.when(repository.findByName(name)).thenReturn(emptyList());
+    void findByFirstName_ReturnsEmptyList_WhenFirstNameIsNotFound() {
+        var firstName = "not-found";
+        BDDMockito.when(repository.findByFirstName(firstName)).thenReturn(emptyList());
 
-        var users = service.findAll(name);
+        var users = service.findAll(firstName);
         Assertions.assertThat(users).isNotNull().isEmpty();
     }
 

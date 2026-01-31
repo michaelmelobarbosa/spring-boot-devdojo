@@ -23,10 +23,10 @@ public class UserController {
     private final UserService service;
 
     @GetMapping
-    public ResponseEntity<List<UserGetResponse>> findAll(@RequestParam(required = false) String name) {
-        log.debug("Request received to list all users, param name '{}'", name);
+    public ResponseEntity<List<UserGetResponse>> findAll(@RequestParam(required = false) String firstName) {
+        log.debug("Request received to list all users, param first name '{}'", firstName);
 
-        var users = service.findAll(name);
+        var users = service.findAll(firstName);
 
         var userGetResponses = mapper.toUserGetResponseList(users);
 

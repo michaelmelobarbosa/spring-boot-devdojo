@@ -16,7 +16,7 @@ public class UserService {
     private final UserHardCodedRepository repository;
 
     public List<User> findAll(String name) {
-        return name == null ? repository.findAll() : repository.findByName(name);
+        return name == null ? repository.findAll() : repository.findByFirstName(name);
     }
 
     public User findByIdOrThrowNotFound(Long id) {
