@@ -34,12 +34,8 @@ public class UserService {
     }
 
     public void update(User userToUpdate) {
-        assertUserExists(userToUpdate.getId());
+        var user = findByIdOrThrowNotFound(userToUpdate.getId());
 
         repository.update(userToUpdate);
-    }
-
-    public void assertUserExists(Long id) {
-        findByIdOrThrowNotFound(id);
     }
 }
