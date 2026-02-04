@@ -1,11 +1,15 @@
 package academy.devdojo.controller;
 
-import academy.devdojo.commons.UserUtils;
 import academy.devdojo.commons.FileUtils;
+import academy.devdojo.commons.UserUtils;
 import academy.devdojo.domain.User;
 import academy.devdojo.repository.UserData;
 import academy.devdojo.repository.UserHardCodedRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +23,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 @WebMvcTest(controllers = UserController.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -189,6 +195,48 @@ class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andExpect(MockMvcResultMatchers.status().reason("User not Found"));
 
+    }
+
+    @ParameterizedTest
+    @MethodSource("postUserBadRequestSource")
+    @DisplayName("POST v1/users returns bad request when fields are empty")
+    @Order(11)
+    void save_ReturnsBadRequest_WhenFieldsAreEmpty(String fileName, List<String> errors) throws Exception {
+        var request = fileUtils.readResourceFile("user/%s".formatted(fileName));
+
+        var mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .post(URL)
+                        .content(request)
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andReturn();
+
+        Exception resolvedException = mvcResult.getResolvedException();
+
+        Assertions.assertThat(resolvedException).isNotNull();
+
+
+        Assertions.assertThat(resolvedException.getMessage()).contains(errors);
+
+    }
+
+    private static Stream<Arguments> postUserBadRequestSource() {
+
+        var firstNameRequiredError = "the field 'firstName' is required";
+        var lastNameRequiredError = "the field 'lastName' is required";
+        var emailRequiredError = "the field 'email' is required";
+        var emailInvalidError = "email format is invalid";
+
+        var allErros = List.of(firstNameRequiredError, lastNameRequiredError, emailRequiredError);
+        var emailError = Collections.singletonList(emailInvalidError);
+
+        return Stream.of(
+                Arguments.of("post-request-user-empty-fields-400.json", allErros),
+                Arguments.of("post-request-user-blank-fields-400.json", allErros),
+                Arguments.of("post-request-user-invalid-email-400.json", emailError)
+        );
     }
 
 }
