@@ -191,9 +191,7 @@ class UserControllerTest {
 
         Assertions.assertThat(resolvedException).isNotNull();
 
-
         Assertions.assertThat(resolvedException.getMessage()).contains(errors);
-
     }
 
 
@@ -277,7 +275,6 @@ class UserControllerTest {
         var firstNameRequiredError = "the field 'firstName' is required";
         var lastNameRequiredError = "the field 'lastName' is required";
         var emailRequiredError = "the field 'email' is required";
-
 
         return new ArrayList<>(List.of(firstNameRequiredError, lastNameRequiredError, emailRequiredError));
     }
