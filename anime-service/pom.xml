@@ -18,9 +18,17 @@
         <java.version>21</java.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <commmons-core.version>0.0.1-SNAPSHOT</commmons-core.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>academy.devdojo</groupId>
+            <artifactId>commmons-core</artifactId>
+            <version>${commmons-core.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
