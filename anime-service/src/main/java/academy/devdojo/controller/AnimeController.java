@@ -1,7 +1,5 @@
 package academy.devdojo.controller;
 
-import academy.devdojo.exception.DefaultErrorMessage;
-import academy.devdojo.exception.NotFoundException;
 import academy.devdojo.mapper.AnimeMapper;
 import academy.devdojo.request.AnimePostRequest;
 import academy.devdojo.request.AnimePutRequest;
