@@ -23,7 +23,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProducerController {
     private final ProducerMapper mapper;
-
     private final ProducerService service;
 
     @GetMapping
@@ -47,11 +46,10 @@ public class ProducerController {
         return ResponseEntity.ok(producerGetResponse);
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE,
-            headers = "x-api-key")
-    public ResponseEntity<ProducerPostResponse> save(@RequestBody @Valid ProducerPostRequest producerPostRequest, @RequestHeader HttpHeaders headers) {
-        log.info("{}", headers);
-        var producer = mapper.toProducer(producerPostRequest);
+    @PostMapping
+    public ResponseEntity<ProducerPostResponse> save(@RequestBody @Valid ProducerPostRequest request) {
+        log.info("Request to save producer : {}", request);
+        var producer = mapper.toProducer(request);
 
         var producerSaved = service.save(producer);
 
