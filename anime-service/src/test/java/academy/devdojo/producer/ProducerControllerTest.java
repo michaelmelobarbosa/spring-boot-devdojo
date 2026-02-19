@@ -1,10 +1,8 @@
-package academy.devdojo.controller;
+package academy.devdojo.producer;
 
 import academy.devdojo.commons.FileUtils;
 import academy.devdojo.commons.ProducerUtils;
 import academy.devdojo.domain.Producer;
-import academy.devdojo.repository.ProducerData;
-import academy.devdojo.repository.ProducerHardCodedRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +11,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jackson.JsonMixinModule;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
@@ -30,7 +27,7 @@ import java.util.stream.Stream;
 
 @WebMvcTest(controllers = ProducerController.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ComponentScan(basePackages = "academy.devdojo")
+@ComponentScan(basePackages = {"academy.devdojo.producer","academy.devdojo.commons"})
 class ProducerControllerTest {
     private static final String URL = "/v1/producers";
     @Autowired
@@ -44,8 +41,6 @@ class ProducerControllerTest {
     private FileUtils fileUtils;
     @Autowired
     private ProducerUtils producerUtils;
-    @Autowired
-    private JsonMixinModule jsonMixinModule;
 
     @BeforeEach
     void init() {

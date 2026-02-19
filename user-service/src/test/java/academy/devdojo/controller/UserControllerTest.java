@@ -141,9 +141,9 @@ class UserControllerTest {
     @DisplayName("PUT v1/users updates a user")
     @Order(7)
     void update_UpdatesUser_WhenSuccessful() throws Exception {
+        var request = fileUtils.readResourceFile("user/put-request-user-200.json");
         var id = 3L;
         var foundUser = usersList.stream().filter(user -> user.getId().equals(id)).findFirst();
-        var request = fileUtils.readResourceFile("user/put-request-user-200.json");
 
         BDDMockito.when(repository.findById(id)).thenReturn(foundUser);
         mockMvc.perform(MockMvcRequestBuilders

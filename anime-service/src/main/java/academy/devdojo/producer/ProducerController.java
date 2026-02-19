@@ -1,17 +1,10 @@
-package academy.devdojo.controller;
+package academy.devdojo.producer;
 
-import academy.devdojo.mapper.ProducerMapper;
-import academy.devdojo.request.ProducerPostRequest;
-import academy.devdojo.request.ProducerPutRequest;
-import academy.devdojo.response.ProducerGetResponse;
-import academy.devdojo.response.ProducerPostResponse;
-import academy.devdojo.service.ProducerService;
+import academy.devdojo.domain.Producer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

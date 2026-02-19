@@ -1,8 +1,7 @@
-package academy.devdojo.service;
+package academy.devdojo.anime;
 
 import academy.devdojo.commons.AnimeUtils;
 import academy.devdojo.domain.Anime;
-import academy.devdojo.repository.AnimeHardCodedRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +24,7 @@ class AnimeServiceTest {
     @InjectMocks
     private AnimeService service;
     @Mock
-    private AnimeHardCodedRepository repository;
+    private AnimeRepository repository;
     private List<Anime> animesList;
     @InjectMocks
     private AnimeUtils animeUtils;
@@ -137,7 +136,7 @@ class AnimeServiceTest {
         animeToUpdate.setName("Grand Blue");
 
         BDDMockito.when(repository.findById(animeToUpdate.getId())).thenReturn(Optional.of(animeToUpdate));
-        BDDMockito.doNothing().when(repository).update(animeToUpdate);
+        BDDMockito.when(repository.save(animeToUpdate)).thenReturn(animeToUpdate);
 
         Assertions.assertThatNoException().isThrownBy(() -> service.update(animeToUpdate));
     }

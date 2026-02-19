@@ -1,8 +1,7 @@
-package academy.devdojo.service;
+package academy.devdojo.anime;
 
 import academy.devdojo.domain.Anime;
 import academy.devdojo.exception.NotFoundException;
-import academy.devdojo.repository.AnimeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ public class AnimeService {
     private final AnimeRepository repository;
 
     public List<Anime> findAll(String name) {
-        return name == null ? repository.findAll() : repository.findByNameIgnoreCase(name);
+        return name == null ? repository.findAll() : repository.findByName(name);
     }
 
     public Anime findByIdOrThrowNotFound(Long id) {
