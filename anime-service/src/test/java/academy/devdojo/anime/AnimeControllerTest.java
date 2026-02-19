@@ -1,7 +1,6 @@
 package academy.devdojo.anime;
 
 
-import academy.devdojo.AnimeServiceApplication;
 import academy.devdojo.commons.AnimeUtils;
 import academy.devdojo.commons.FileUtils;
 import academy.devdojo.domain.Anime;
@@ -17,7 +16,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
