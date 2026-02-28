@@ -1,17 +1,23 @@
 package academy.devdojo.domain;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
+@With
 @Getter
 @Setter
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Anime {
 
     @EqualsAndHashCode.Include
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String name;
 }
